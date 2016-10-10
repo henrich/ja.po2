@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: debhelper 9.20141107\n"
 "POT-Creation-Date: 2016-09-11 08:47+0000\n"
-"PO-Revision-Date: 2016-09-11 20:45+0900\n"
+"PO-Revision-Date: 2016-09-17 20:45+0900\n"
 "Last-Translator: Hideki Yamane <henrich@debian.org>\n"
 "Language-Team: Debian JP Project <debian-doc@debian.or.jp>\n"
 "Language: Japanease\n"
@@ -328,13 +328,12 @@ msgstr "B<-a>, B<--arch>"
 
 #. type: textblock
 #: debhelper.pod:113
-#, fuzzy
 msgid ""
 "Act on architecture dependent packages that should be built for the "
 "B<DEB_HOST_ARCH> architecture."
 msgstr ""
-"アーキテクチャ依存パッケージを、ビルド環境のアーテキクチャの元でビルドするよ"
-"うに作用します。"
+"アーキテクチャ依存パッケージを、B<DEB_HOST_ARCH> アーテキクチャ向けにビルドするよ"
+"うに動作します。"
 
 #. type: =item
 #: debhelper.pod:116
@@ -368,7 +367,7 @@ msgstr "B<-s>, B<--same-arch>"
 #. type: textblock
 #: debhelper.pod:127
 msgid "Deprecated alias of B<-a>."
-msgstr ""
+msgstr "廃止された B<-a> のエイリアスです。"
 
 #. type: =item
 #: debhelper.pod:129
@@ -643,28 +642,28 @@ msgstr "B<--parallel>, B<--no-parallel>"
 
 #. type: textblock
 #: debhelper.pod:236
-#, fuzzy
 msgid ""
 "Control whether parallel builds should be used if underlying build system "
 "supports them.  The number of parallel jobs is controlled by the "
 "B<DEB_BUILD_OPTIONS> environment variable (L<Debian Policy, section 4.9.1>) "
 "at build time. It might also be subject to a build system specific limit."
 msgstr ""
-"ビルドシステムがサポートしている場合、並列ビルドを有効にします。どれだけの数"
-"で並列ビルドするかは、ビルドが行われる際に B<DEB_BUILD_OPTIONS> 環境変数に"
+"ビルドシステムがサポートしている場合、並列ビルドを有効にするかどうかを管理します。"
+"どれだけの数でジョブを並列にするかは、ビルドが行われる際に B<DEB_BUILD_OPTIONS> 環境変数に"
 "よって決定されます (L<Debian ポリシーマニュアル、4.9.1章>)。ビルドシステム固"
 "有の制限に影響を受ける場合もあります。"
 
 #. type: textblock
 #: debhelper.pod:242
-#, fuzzy
 msgid ""
 "If neither option is specified, debhelper currently defaults to B<--"
 "parallel> in compat 10 (or later) and B<--no-parallel> otherwise."
 msgstr ""
-"このオプションが指定されていないと、debhelper は現状デフォルトでは並列ビルド"
-"を行いません。"
+"どちらのオプションも指定されていない場合、debhelper は現在では互換性レベル "
+"10 (以降) の場合は B<--parallel> をデフォルトに、そうでない場合は B<--no-parallel> "
+"が指定されます。"
 
+# FIXME: typo: unncessary
 #. type: textblock
 #: debhelper.pod:245
 msgid ""
@@ -673,6 +672,10 @@ msgid ""
 "this happens when B<DEB_BUILD_OPTIONS> does not have a I<parallel> parameter "
 "(or its value is 1)."
 msgstr ""
+"これらのオプションが不要である場合、あるいはこのオプションだけが渡された場合には、"
+"B<dh> はこれらのオプションをサブプロセスに渡すのを最適化のため避けようとします。"
+"特に、これは B<DEB_BUILD_OPTIONS> が I<parallel> パラメーターを持たない (または"
+"この値が 1 である) 場合に起こります。"
 
 #. type: =item
 #: debhelper.pod:250
@@ -698,6 +701,7 @@ msgid ""
 "Notably, setting the maximum to 1 is effectively the same as using B<--no-"
 "parallel>."
 msgstr ""
+"特に、最大値を 1 に設定するのは B<--no-parallel> を使うのと同じ効果があります。"
 
 #. type: =item
 #: debhelper.pod:260 dh:61
@@ -725,7 +729,6 @@ msgstr "互換性レベル"
 
 #. type: textblock
 #: debhelper.pod:271
-#, fuzzy
 msgid ""
 "From time to time, major non-backwards-compatible changes need to be made to "
 "debhelper, to keep it clean and well-designed as needs change and its author "
@@ -740,17 +743,17 @@ msgstr ""
 "要があることと、debhelper の作者がより経験を得てより深く考えるようになったた"
 "めです。このような大きな変更によって既存のパッケージを壊さないようにするた"
 "め、互換性レベルという考え方が導入されました。debhelper にどの互換性レベルを"
-"使うべきかを指定し、これに合わせて動作が様々に変化します。"
+"使うべきかを指定することで、これに合わせて動作が様々に変化します。互換性レベル"
+"は F<debian/compat> ファイルで指定され、このファイルは必須となっています。"
 
 #. type: textblock
 #: debhelper.pod:279
-#, fuzzy
 msgid ""
 "Tell debhelper what compatibility level to use by writing a number to "
 "F<debian/compat>. For example, to use v9 mode:"
 msgstr ""
-"debhelper でどの互換性レベルを使うかを指定するには、数字を F<debian/compat> "
-"に記述します。例えば、v9 モードを有効にするには次の様にします:"
+"数字を F<debian/compat> に記述して、debhelper にどの互換性レベルを使うかを"
+"教えます。例えば、v9 モードを使うには次の様にします:"
 
 #. type: verbatim
 #: debhelper.pod:282
@@ -810,9 +813,8 @@ msgstr "v5"
 
 #. type: textblock
 #: debhelper.pod:303
-#, fuzzy
 msgid "This is the lowest supported compatibility level."
-msgstr "利用可能な互換性レベルは以下の通りです:"
+msgstr "これはサポートされている最低限の互換性レベルです。"
 
 #. type: =item
 #: debhelper.pod:305
@@ -1103,11 +1105,13 @@ msgstr ""
 
 #. type: textblock
 #: debhelper.pod:463
+#, fuzzy
 msgid ""
 "B<dh_installdocs> will error out if it detects links created with --link-doc "
 "between packages of architecture \"all\" and non-\"all\" as it breaks "
 "binNMUs."
 msgstr ""
+"B<dh_installdocs> は"
 
 #. type: textblock
 #: debhelper.pod:469
@@ -1124,13 +1128,12 @@ msgstr ""
 
 #. type: textblock
 #: debhelper.pod:476
-#, fuzzy
 msgid ""
 "B<dh_installdeb> no longer installs a maintainer-provided debian/I<package>."
 "shlibs file.  This is now done by B<dh_makeshlibs> instead."
 msgstr ""
-"B<dh_installinit> は、init スクリプトとして debian/I<package> という名前で"
-"ファイルをインストールしなくなりました。"
+"B<dh_installdeb>は、メンテナが提供した debian/I<package>.shlibs ファイルを"
+"インストールしなくなりました。現在これは、B<dh_makeshlibs> によって代わりに行われます。"
 
 #. type: textblock
 #: debhelper.pod:482
@@ -1277,6 +1280,8 @@ msgid ""
 "B<dh_installmenu> no longer installs F<menu> files.  The F<menu-method> "
 "files are still installed."
 msgstr ""
+"B<dh_installmenu> は F<menu> ファイルをインストールしなくなりました。"
+"まだ F<menu-method> ファイルはインストールされます。"
 
 #. type: textblock
 #: debhelper.pod:578
@@ -1288,6 +1293,7 @@ msgstr "B<-s>, B<--same-arch> オプションは削除されました。"
 msgid ""
 "Invoking B<dh_clean -k> now causes an error instead of a deprecation warning."
 msgstr ""
+"B<dh_clean -k> の起動は deprecation の警告ではなくエラーを起こすようになりました。"
 
 #. type: textblock
 #: debhelper.pod:587
@@ -1296,6 +1302,9 @@ msgid ""
 "I<package>.docs) into F</usr/share/doc/mainpackage> rather than F</usr/share/"
 "doc/package> by default as recommended by Debian Policy 3.9.7."
 msgstr ""
+"B<dh_installdocs> は、Debian ポリシー 3.9.7 の勧めに従って、ユーザーが提供する"
+"ドキュメントを、デフォルトでは F</usr/share/doc/package> ではなく F</usr/share/doc/mainpackage> "
+"にインストールするようになりました。"
 
 #. type: textblock
 #: debhelper.pod:592
@@ -1463,13 +1472,12 @@ msgstr ""
 
 #. type: textblock
 #: debhelper.pod:675
-#, fuzzy
 msgid ""
 "First, any package whose B<Architecture> field in B<debian/control> does not "
 "match the B<DEB_HOST_ARCH> architecture will be excluded (L<Debian Policy, "
 "section 5.6.8>)."
 msgstr ""
-"まず、B<debian/control> 中の B<Architecture> フィールドがビルドアーキテクチャ"
+"まず、B<debian/control> 中の B<Architecture> フィールドが B<DEB_HOST_ARCH> アーキテクチャ"
 "に一致しない全てのパッケージが除外されます (L<Debian ポリシー 5.6.8 章>)。"
 
 #. type: textblock
@@ -2008,7 +2016,7 @@ msgstr "利用可能なアドオン一覧を表示する。"
 #: dh:65
 #, fuzzy
 msgid "This can be used without a F<debian/compat> file."
-msgstr "以下が F<debian/package.docs> ファイルの例です:"
+msgstr ""
 
 #. type: textblock
 #: dh:69
@@ -3245,10 +3253,11 @@ msgstr "F<debian/clean>"
 #: dh_clean:38
 #, fuzzy
 msgid "Can list other paths to be removed."
-msgstr "消去されるファイルの一覧を出力できます。"
+msgstr "消去されるパスの一覧を出力できます。"
 
 #. type: textblock
 #: dh_clean:40
+#, fuzzy
 msgid ""
 "Note that directories listed in this file B<must> end with a trailing "
 "slash.  Any content in these directories will be removed as well."
@@ -3593,15 +3602,14 @@ msgstr ""
 
 #. type: textblock
 #: dh_gencontrol:23
-#, fuzzy
 msgid ""
 "This program is merely a wrapper around L<dpkg-gencontrol(1)>, which calls "
 "it once for each package being acted on (plus related dbgsym packages), and "
 "passes in some additional useful flags."
 msgstr ""
-"このプログラムは単に L<dpkg-gencontrol(1)> のラッパーです。処理を行うべきパッ"
-"ケージ各々に対し L<dpkg-gencontrol(1)> を都度呼び出し、同時にいくつかの便利な"
-"フラグも渡すプログラムです。"
+"このプログラムは単に L<dpkg-gencontrol(1)> のラッパーです。処理を行うべきそれぞれの"
+"パッケージ (関連する dbgsym パッケージも含む) に対し L<dpkg-gencontrol(1)> を"
+"都度呼び出し、同時にいくつかの便利なフラグも渡します。"
 
 #. type: textblock
 #: dh_gencontrol:27
@@ -3790,15 +3798,14 @@ msgstr ""
 
 #. type: textblock
 #: dh_install:53
-#, fuzzy
 msgid ""
 "Note that if you list exactly one filename or wildcard-pattern on a line by "
 "itself, with no explicit destination, then B<dh_install> will automatically "
 "guess the destination to use, the same as if the --autodest option were used."
 msgstr ""
-"ただ１つのファイル名もしくは、ワイルドカードパターンF<debian/package."
-"install> にを指定した行を列挙した場合は、--autodest オプションを指定した時の"
-"みに、B<dh_install> はこれらをインストール先ファイルとして扱います。"
+"明示的にインストール先を記述せず、ただ１つのファイル名もしくはワイルドカード"
+"パターンを指定した行を列挙した場合は、--autodest オプションが使われた時同様に "
+"B<dh_install> は自動的に利用されるインストール先を推測します。"
 
 #. type: =item
 #: dh_install:58
@@ -3821,6 +3828,7 @@ msgid ""
 "Please keep in mind that dh_install will B<not> expand wildcards in this "
 "file."
 msgstr ""
+"dh_install は、このファイル内でワイルドカードをB<展開しない>点に注意して下さい。"
 
 #. type: =item
 #: dh_install:75
@@ -3961,7 +3969,6 @@ msgstr ""
 msgid "LIMITATIONS"
 msgstr "制限事項"
 
-# FIXME:  why-no-wrap
 #. type: textblock
 #: dh_install:305
 #, fuzzy
@@ -3970,11 +3977,8 @@ msgid ""
 "with the names they already have into wherever you want in the package build "
 "tree."
 msgstr ""
-"B<dh_install> はファイル、ディレクトリの名前の変更ができません。\n"
-"一方で、パッケージビルドツリー以下のすでに存在するファイル、ディレクトリの名"
-"前へ\n"
-"ファイルをインストールすることが可能です。\n"
-"  \n"
+"B<dh_install> はファイル、ディレクトリの名前を変更できません。一方で、パッケージビルドツリー以下のすでに存在するファイル、ディレクトリの名"
+"前へファイルをインストールすることが可能です。"
 
 #. type: textblock
 #: dh_install:309
@@ -3999,7 +4003,7 @@ msgstr ""
 #. type: textblock
 #: dh_install:316
 msgid "Please remember the following three things:"
-msgstr ""
+msgstr "以下の 3 点に留意して下さい:"
 
 #. type: =item
 #: dh_install:320
@@ -4007,16 +4011,17 @@ msgid ""
 "* The package must be using compatibility level 9 or later (see "
 "L<debhelper(7)>)"
 msgstr ""
+"* パッケージは互換性レベル 9 以降を使う必要があります (L<debhelper(7)> 参照)"
 
 #. type: =item
 #: dh_install:322
 msgid "* The package will need a build-dependency on dh-exec."
-msgstr ""
+msgstr "* パッケージは dh-exec へのビルド依存が必要になります。"
 
 #. type: =item
 #: dh_install:324
 msgid "* The install file must be marked as executable."
-msgstr ""
+msgstr "* install ファイルは実行可能になっている必要があります。"
 
 #. type: textblock
 #: dh_installcatalogs:5
@@ -4158,7 +4163,6 @@ msgstr ""
 
 #. type: textblock
 #: dh_installchangelogs:26
-#, fuzzy
 msgid ""
 "If there is an upstream F<changelog> file, it will be installed as F<usr/"
 "share/doc/package/changelog> in the package build directory."
@@ -7750,7 +7754,7 @@ msgstr ""
 #. type: textblock
 #: dh_strip:105
 msgid "The default is to create debug symbol packages."
-msgstr ""
+msgstr "デフォルトはデバッグシンボルパッケージを作成します。"
 
 #. type: =item
 #: dh_strip:107
@@ -7760,7 +7764,7 @@ msgstr "B<--ddebs>, B<--no-ddebs>"
 #. type: textblock
 #: dh_strip:109
 msgid "Historical name for B<--automatic-dbgsym> and B<--no-automatic-dbgsym>."
-msgstr ""
+msgstr "B<--automatic-dbgsym> と B<--no-automatic-dbgsym> の歴史的な名前です。"
 
 #. type: =item
 #: dh_strip:111
@@ -7770,7 +7774,7 @@ msgstr "B<--ddeb-migration=>I<package-relation>"
 #. type: textblock
 #: dh_strip:113
 msgid "Historical name for B<--dbgsym-migration>."
-msgstr ""
+msgstr "B<--dbgsym-migration> の歴史的な名前です。"
 
 #. type: textblock
 #: dh_strip:119
@@ -7924,7 +7928,7 @@ msgstr "Andrew Stribblehill <ads@debian.org>"
 #. type: textblock
 #: dh_systemd_enable:5
 msgid "dh_systemd_enable - enable/disable systemd unit files"
-msgstr ""
+msgstr "dh_systemd_enable - systemd unit ファイルを有効／無効にする"
 
 #. type: textblock
 #: dh_systemd_enable:15
@@ -8098,9 +8102,8 @@ msgstr ""
 
 #. type: textblock
 #: dh_systemd_start:56
-#, fuzzy
 msgid "Do not stop service on upgrade."
-msgstr "init スクリプトをアップグレード中には停止させません。"
+msgstr "サービスをアップグレード中に停止させません。"
 
 #. type: textblock
 #: dh_systemd_start:60
@@ -8121,445 +8124,7 @@ msgstr ""
 
 #. type: textblock
 #: strings-kept-translations.pod:7
-#, fuzzy
 msgid "This compatibility level is open for beta testing; changes may occur."
 msgstr ""
-"この互換性レベルは未だ開発中の状態です。使う場合は注意して使ってください。"
+"この互換性レベルはベータテスト中です。変更が加わります。"
 
-#~ msgid ""
-#~ "This used to be a smarter version of the B<-a> flag, but the B<-a> flag "
-#~ "is now equally smart."
-#~ msgstr ""
-#~ "これはより賢い B<-a> フラグとして使われていました。しかしながら現在では "
-#~ "B<-a> はフラグは同じぐらい賢くなっています。"
-
-#~ msgid "B<--parallel>"
-#~ msgstr "B<--parallel>"
-
-#~ msgid ""
-#~ "This is the original debhelper compatibility level, and so it is the "
-#~ "default one. In this mode, debhelper will use F<debian/tmp> as the "
-#~ "package tree directory for the first binary package listed in the control "
-#~ "file, while using debian/I<package> for all other packages listed in the "
-#~ "F<control> file."
-#~ msgstr ""
-#~ "これは debhelper が元来持つ互換性レベルで、これがデフォルトです。このモー"
-#~ "ドでは、debhelper はF<debian/tmp> を、control ファイルの最初に記載されてい"
-#~ "るバイナリパッケージのビルドディレクトリとして利用しようとします。また、"
-#~ "debian/I<package> を F<control> 内に指定されている全パッケージに対して適用"
-#~ "します。"
-
-#~ msgid "This mode is deprecated."
-#~ msgstr "本モードは非推奨です (deprecated)。"
-
-#~ msgid "v2"
-#~ msgstr "v2"
-
-#~ msgid ""
-#~ "In this mode, debhelper will consistently use debian/I<package> as the "
-#~ "package tree directory for every package that is built."
-#~ msgstr ""
-#~ "このモードを指定すると、常に debian/I<package> を全パッケージのビルドディ"
-#~ "レクトリとして利用するようになります。"
-
-#~ msgid "v3"
-#~ msgstr "v3"
-
-#~ msgid "This mode works like v2, with the following additions:"
-#~ msgstr ""
-#~ "このモードは v2 のモードと同じ動作をしますが、以下の追加機能があります:"
-
-#~ msgid ""
-#~ "Debhelper config files support globbing via B<*> and B<?>, when "
-#~ "appropriate. To turn this off and use those characters raw, just prefix "
-#~ "with a backslash."
-#~ msgstr ""
-#~ "debhelper の設定ファイルは、B<*> や B<?> のワイルドカードによるファイル名"
-#~ "指定が利用できます。この機能を無効にし、これらワイルドカード文字をそのまま"
-#~ "の文字として扱うには、バックスラッシュを文字の前に置いてください。"
-
-#~ msgid ""
-#~ "B<dh_makeshlibs> makes the F<postinst> and F<postrm> scripts call "
-#~ "B<ldconfig>."
-#~ msgstr ""
-#~ "B<dh_makeshlibs> により、F<postinst> や F<postrm> スクリプトが "
-#~ "B<ldconfig> を呼び出すようになっています。"
-
-#~ msgid ""
-#~ "Every file in F<etc/> is automatically flagged as a conffile by "
-#~ "B<dh_installdeb>."
-#~ msgstr ""
-#~ "B<dh_installdeb> は、F<etc/> 以下のすべてのファイルを自動的に conffile と"
-#~ "して扱います。"
-
-#~ msgid "v4"
-#~ msgstr "v4"
-
-#~ msgid ""
-#~ "B<dh_makeshlibs -V> will not include the Debian part of the version "
-#~ "number in the generated dependency line in the shlibs file."
-#~ msgstr ""
-#~ "B<dh_makeshlibs -V> は、shlibs ファイル内の生成された依存関係を示す行の"
-#~ "バージョン番号について、debian リビジョンを含めないようになりました。"
-
-#~ msgid ""
-#~ "You are encouraged to put the new B<${misc:Depends}> into F<debian/"
-#~ "control> to supplement the B<${shlibs:Depends}> field."
-#~ msgstr ""
-#~ "F<debian/control> へ、B<${shlibs:Depends}> の他に B<${misc:Depends}> を新"
-#~ "たに指定するのが推奨されるようになりました。"
-
-#~ msgid ""
-#~ "B<dh_fixperms> will make all files in F<bin/> directories and in F<etc/"
-#~ "init.d> executable."
-#~ msgstr ""
-#~ "B<dh_fixperms> により、F<bin/> ディレクトリ及び F <etc/init.d> 以下にある"
-#~ "すべてのファイルに実行権限が付与されるようになりました。"
-
-#~ msgid "B<dh_link> will correct existing links to conform with policy."
-#~ msgstr ""
-#~ "B<dh_link>は、既存のリンクであってもポリシーに合わせ、リンクを修正するよう"
-#~ "になりました。"
-
-#~ msgid "Changes from v4 are:"
-#~ msgstr "v4 からの変更点:"
-
-#~ msgid "Comments are ignored in debhelper config files."
-#~ msgstr "debhelper 設定ファイルでのコメントは無視されるようになりました。"
-
-#~ msgid ""
-#~ "B<dh_strip --dbg-package> now specifies the name of a package to put "
-#~ "debugging symbols in, not the packages to take the symbols from."
-#~ msgstr ""
-#~ "B<dh_strip --dbg-package> により、デバッグ用シンボルテーブルに対してパッ"
-#~ "ケージの名前を指定できるようになりました。以前はデバッグ用シンボルテーブル"
-#~ "からパッケージの名前を取り出していました。"
-
-#~ msgid "B<dh_installdocs> skips installing empty files."
-#~ msgstr "B<dh_installdocs> は、空のファイルをインストールしなくなりました。"
-
-#~ msgid "B<dh_install> errors out if wildcards expand to nothing."
-#~ msgstr ""
-#~ "B<dh_install> は、ワイルドカードに該当するファイルが無い時はエラーを出力す"
-#~ "るようになりました。"
-
-#~ msgid ""
-#~ "  my $temp=\"set -e\\nset -- @ARGV\\n\" . << 'EOF';\n"
-#~ "  #DEBHELPER#\n"
-#~ "  EOF\n"
-#~ "  system ($temp) / 256 == 0\n"
-#~ "  \tor die \"Problem with debhelper scripts: $!\";\n"
-#~ "\n"
-#~ msgstr ""
-#~ "  my $temp=\"set -e\\nset -- @ARGV\\n\" . << 'EOF';\n"
-#~ "  #DEBHELPER#\n"
-#~ "  EOF\n"
-#~ "  system ($temp) / 256 == 0\n"
-#~ "  \tor die \"Problem with debhelper scripts: $!\";\n"
-#~ "\n"
-
-#~ msgid ""
-#~ "If your package uses autotools and you want to freshen F<config.sub> and "
-#~ "F<config.guess> with newer versions from the B<autotools-dev> package at "
-#~ "build time, you can use some commands provided in B<autotools-dev> that "
-#~ "automate it, like this."
-#~ msgstr ""
-#~ "もしパッケージが autotools を利用しており、パッケージビルド時に F<config."
-#~ "sub> や F<config.guess> ファイルをより新しいバージョンの B<autotools-dev> "
-#~ "で更新したい場合があります。この場合、B<autotools-dev> で提供されているコ"
-#~ "マンドを使って以下のように自動化する事ができます。"
-
-#~ msgid ""
-#~ "\t#!/usr/bin/make -f\n"
-#~ "\t%:\n"
-#~ "\t\tdh $@ --with autotools_dev\n"
-#~ "\n"
-#~ msgstr ""
-#~ "\t#!/usr/bin/make -f\n"
-#~ "\t%:\n"
-#~ "\t\tdh $@ --with autotools_dev\n"
-#~ "\n"
-
-#~ msgid "dh_desktop - deprecated no-op"
-#~ msgstr "dh_desktop - 廃止されており、何も実行しない"
-
-#~ msgid "B<dh_desktop> [S<I<debhelper options>>]"
-#~ msgstr "B<dh_desktop> [S<I<debhelper options>>]"
-
-#~ msgid ""
-#~ "B<dh_desktop> was a debhelper program that registers F<.desktop> files.  "
-#~ "However, it no longer does anything, and is now deprecated."
-#~ msgstr ""
-#~ "B<dh_desktop> は F<.desktop> ファイルを登録する debhelper プログラムでし"
-#~ "た。しかし、もはや今では何もしないプログラムとなり、廃止されています。"
-
-#~ msgid ""
-#~ "If a package ships F<desktop> files, they just need to be installed in "
-#~ "the correct location (F</usr/share/applications>) and they will be "
-#~ "registered by the appropriate tools for the corresponding desktop "
-#~ "environments."
-#~ msgstr ""
-#~ "F<desktop> ファイルをパッケージが提供したい場合、単にこのファイルを正しい"
-#~ "位置 (F</usr/share/applications>) にインストールし、このファイルが対象とす"
-#~ "るデスクトップ環境の適切なツールを使って登録をすることになります。"
-
-#~ msgid "Ross Burton <ross@burtonini.com>"
-#~ msgstr "Ross Burton <ross@burtonini.com>"
-
-#~ msgid ""
-#~ "A versioned Pre-Dependency on dpkg is needed to use L<dpkg-maintscript-"
-#~ "helper(1)>. An appropriate Pre-Dependency is set in ${misc:Pre-Depends} ; "
-#~ "you should make sure to put that token into an appropriate place in your "
-#~ "debian/control file."
-#~ msgstr ""
-#~ "L<dpkg-maintscript-helper(1)> を使うには、dpkg バージョンを指定した Pre-"
-#~ "Depends が必要となります。こちらに関する依存関係をあらかじめ正しくしておく"
-#~ "には、${misc:Pre-Depends} を設定してください。つまり、debian/control ファ"
-#~ "イルの適切な場所に ${misc:Pre-Depends} が入っているか確かめてください。"
-
-#~ msgid ""
-#~ "Code is added to the F<preinst> and F<postinst> to handle the upgrade "
-#~ "from the old B<udev> rules file location."
-#~ msgstr ""
-#~ "F<preinst> と F<postinst> へ、古い B<udev> ルールファイルからのアップグ"
-#~ "レードを行うコードを追加します。 "
-
-#~ msgid "Do not modify F<preinst>/F<postinst> scripts."
-#~ msgstr "F<preinst>/F<postinst> スクリプトを変更しません。"
-
-#~ msgid ""
-#~ "It also adds a call to ldconfig in the F<postinst> and F<postrm> scripts "
-#~ "(in v3 mode and above only) to any packages in which it finds shared "
-#~ "libraries."
-#~ msgstr ""
-#~ "共有ライブラリを見つけたパッケージに対して、F<postinst>, F<postrm> スクリ"
-#~ "プトへ ldconfig の呼び出しを行う処理を付け加えることも出来ます (互換性レベ"
-#~ "ル v3 以上のみ)。"
-
-#~ msgid ""
-#~ "Packages that support multiarch are detected, and a Pre-Dependency on "
-#~ "multiarch-support is set in ${misc:Pre-Depends} ; you should make sure to "
-#~ "put that token into an appropriate place in your debian/control file for "
-#~ "packages supporting multiarch."
-#~ msgstr ""
-#~ "multiarch をサポートするパッケージを見つけると、multiarch サポートに関す"
-#~ "る Pre-Depends について ${misc:Pre-Depends} へ設定します。パッケージが "
-#~ "multiarch をサポートする場合は、debian/control ファイルの適切な場所へ "
-#~ "${misc:Pre-Depends} を挿入してあることを確認してください。"
-
-#~ msgid ""
-#~ "dh_python - calculates Python dependencies and adds postinst and prerm "
-#~ "Python scripts (deprecated)"
-#~ msgstr ""
-#~ "dh_python - Pythonスクリプトの依存関係を計算し、postinst と prerm を付け加"
-#~ "えるPythonスクリプト (廃止) "
-
-#~ msgid ""
-#~ "B<dh_python> [S<I<debhelper options>>] [B<-n>] [B<-V> I<version>] "
-#~ "[S<I<module dirs> ...>]"
-#~ msgstr ""
-#~ "B<dh_python> [S<I<debhelper options>>] [B<-n>] [B<-V> I<version>] "
-#~ "[S<I<module dirs> ...>]"
-
-#~ msgid ""
-#~ "Note: This program is deprecated. You should use B<dh_python2> instead.  "
-#~ "This program will do nothing if F<debian/pycompat> or a B<Python-Version> "
-#~ "F<control> file field exists."
-#~ msgstr ""
-#~ "注意：本プログラムは廃止されました。B<dh_python2>　を代わりに利用してくだ"
-#~ "さい。このプログラムは、F<debian/pycompat>　が存在していたり、B<Python-"
-#~ "Version>　フィールドが　F<control>　ファイルに存在すると何も実行しませ"
-#~ "ん。 "
-
-#~ msgid ""
-#~ "B<dh_python> is a debhelper program that is responsible for generating "
-#~ "the B<${python:Depends}> substitutions and adding them to substvars "
-#~ "files. It will also add a F<postinst> and a F<prerm> script if required."
-#~ msgstr ""
-#~ "B<dh_python> は B<${python:Depends}> を置き換える為の情報を生成し、"
-#~ "substvars ファイルへこの情報を付け加える役目の debhelper プログラムです。"
-#~ "必要に応じて、F<postinst> や F<prerm> スクリプトも追加します。 "
-
-#~ msgid ""
-#~ "The program will look at Python scripts and modules in your package, and "
-#~ "will use this information to generate a dependency on B<python>, with the "
-#~ "current major version, or on B<python>I<X>B<.>I<Y> if your scripts or "
-#~ "modules need a specific B<python> version. The dependency will be "
-#~ "substituted into your package's F<control> file wherever you place the "
-#~ "token B<${python:Depends}>."
-#~ msgstr ""
-#~ "このプログラムは構築対象のパッケージに Python スクリプトや Python モジュー"
-#~ "ルが無いかどうか確認し、B<python> に関する依存関係を示す情報を生成する為に"
-#~ "これらのスクリプトやモジュールの情報を利用します。依存関係の情報を生成する"
-#~ "にあたり利用される情報として、B<python> についての現在の主バージョンや、ス"
-#~ "クリプトやモジュールが特定の B<python> のバージョンを指定している場合は "
-#~ "B<python>I<X>B<.>I<Y> が利用されます。構築予定のパッケージのF<control>ファ"
-#~ "イルのどこかに B<${python:Depends}> があれば、依存情報で置き換えられます。"
-
-#~ msgid ""
-#~ "If some modules need to be byte-compiled at install time, appropriate "
-#~ "F<postinst> and F<prerm> scripts will be generated. If already byte-"
-#~ "compiled modules are found, they are removed."
-#~ msgstr ""
-#~ "インストール時にバイトコンパイルされる事が必要なパッケージなら、適切な "
-#~ "F<postinst> と F<prerm> スクリプトが生成されます。この場合、バイトコンパイ"
-#~ "ルされたモジュールが構築中のパッケージ内部に見つかると、こちらは削除されま"
-#~ "す。"
-
-#~ msgid ""
-#~ "If you use this program, your package should build-depend on B<python>."
-#~ msgstr ""
-#~ "このプログラムを使う場合、B<python> に対する build-depend を設定する必要が"
-#~ "あります。"
-
-#~ msgid "I<module dirs>"
-#~ msgstr "I<module dirs>"
-
-#~ msgid ""
-#~ "If your package installs Python modules in non-standard directories, you "
-#~ "can make F<dh_python> check those directories by passing their names on "
-#~ "the command line. By default, it will check F</usr/lib/site-python>, F</"
-#~ "usr/lib/$PACKAGE>, F</usr/share/$PACKAGE>, F</usr/lib/games/$PACKAGE>, F</"
-#~ "usr/share/games/$PACKAGE> and F</usr/lib/python?.?/site-packages>."
-#~ msgstr ""
-#~ "非標準のディレクトリに Python モジュールをインストールする場合、 コマンド"
-#~ "ラインからインストール先のディレクトリを指定する事により、F<dh_python> に"
-#~ "検査させることができます。デフォルト, F</usr/lib/site-python>, F</usr/lib/"
-#~ "$PACKAGE>, F</usr/share/$PACKAGE>, F</usr/lib/games/$PACKAGE>, F</usr/"
-#~ "share/games/$PACKAGE>, F</usr/lib/python?.?/site-packages> が検査対象とな"
-#~ "ります。"
-
-#, fuzzy
-#~ msgid ""
-#~ "Note: only F</usr/lib/site-python>, F</usr/lib/python?.?/site-packages> "
-#~ "and the extra names on the command line are searched for binary (F<.so>) "
-#~ "modules."
-#~ msgstr ""
-#~ "注意：バイナリ形式 (F<.so>) モジュールの検査対象となるのは、F</usr/lib/"
-#~ "site-python>, F</usr/lib/python?.?/site-packages> 及び、コマンドラインから"
-#~ "指定されたディレクトリ名のみとなります。"
-
-#~ msgid "B<-V> I<version>"
-#~ msgstr "B<-V> I<version>"
-
-#~ msgid ""
-#~ "If the F<.py> files your package ships are meant to be used by a specific "
-#~ "B<python>I<X>B<.>I<Y> version, you can use this option to specify the "
-#~ "desired version, such as B<2.3>. Do not use if you ship modules in F</usr/"
-#~ "lib/site-python>."
-#~ msgstr ""
-#~ "構築中のパッケージが提供する予定の F<.py> ファイルが特定の "
-#~ "B<python>I<X>B<.>I<Y> バージョンの元で使われる事を意図したければ、このオプ"
-#~ "ションを用いて、例えばB<2.3>のように、期待されるバージョンを指定することが"
-#~ "できます。なお、F</usr/lib/site-python>以下にインストール予定のモジュール"
-#~ "に対してはこのオプションを使ってバージョン指定はしないでください。"
-
-#~ msgid "Debian policy, version 3.5.7"
-#~ msgstr "Debian policy, version 3.5.7"
-
-#~ msgid "Python policy, version 0.3.7"
-#~ msgstr "Python policy, version 0.3.7"
-
-#~ msgid "Josselin Mouette <joss@debian.org>"
-#~ msgstr "Josselin Mouette <joss@debian.org>"
-
-#~ msgid "most ideas stolen from Brendan O'Dea <bod@debian.org>"
-#~ msgstr "着想の多くは Brendan O'Dea <bod@debian.org> から拝借しました"
-
-#~ msgid "dh_scrollkeeper - deprecated no-op"
-#~ msgstr "dh_scrollkeeper - 廃止されており、何もしないコマンド"
-
-#~ msgid ""
-#~ "B<dh_scrollkeeper> [S<I<debhelper options>>] [B<-n>] [S<I<directory>>]"
-#~ msgstr ""
-#~ "B<dh_scrollkeeper> [S<I<debhelper options>>] [B<-n>] [S<I<directory>>]"
-
-#~ msgid ""
-#~ "B<dh_scrollkeeper> was a debhelper program that handled registering OMF "
-#~ "files for ScrollKeeper. However, it no longer does anything, and is now "
-#~ "deprecated."
-#~ msgstr ""
-#~ "B<dh_scrollkeeper> は ScrollKeeper に必要な OMF ファイルを登録する役目の "
-#~ "debhelper プログラムです。しかし今では何もしません。本プログラムは廃止され"
-#~ "ました。"
-
-#~ msgid ""
-#~ "Note that this option behaves significantly different in debhelper "
-#~ "compatibility levels 4 and below. Instead of specifying the name of a "
-#~ "debug package to put symbols in, it specifies a package (or packages) "
-#~ "which should have separated debug symbols, and the separated symbols are "
-#~ "placed in packages with B<-dbg> added to their name."
-#~ msgstr ""
-#~ "このオプションは debhelper の互換性レベルv4以下について振る舞いが大きく変"
-#~ "わります。この時は、引数にデバッグシンボルを残したままにしておきたいデバッ"
-#~ "グ用のパッケージ名を指定する代わりに、デバッグシンボルを取り除きたいパッ"
-#~ "ケージ名 (あるいはパッケージ群) を指定します。そうすると、取り除かれたデ"
-#~ "バッグシンボルは、パッケージ名に B<-dbg> を付与した名前を持つパッケージに"
-#~ "保存されます。"
-
-#~ msgid "dh_suidregister - suid registration program (deprecated)"
-#~ msgstr "dh_suidregister - suid を付与したプログラムを登録する (廃止)"
-
-#~ msgid "Do not run!"
-#~ msgstr "このコマンドを実行しないでください！"
-
-#~ msgid ""
-#~ "This program used to register suid and sgid files with "
-#~ "L<suidregister(1)>, but with the introduction of L<dpkg-statoverride(8)>, "
-#~ "registration of files in this way is unnecessary, and even harmful, so "
-#~ "this program is deprecated and should not be used."
-#~ msgstr ""
-#~ "このプログラムは L<suidregister(1)> により、suid や、sgid ファイルを登録す"
-#~ "るのに使われます。しかしながら、L<dpkg-statoverride(8)> の序章の通り、この"
-#~ "コマンドが提供するやり方でファイルを登録することは不必要なことであり、不具"
-#~ "合も引き起こします。その為、このプログラムは廃止されており、使わないように"
-#~ "してください。"
-
-#~ msgid "CONVERTING TO STATOVERRIDE"
-#~ msgstr "STATOVERRIDE 用に変換する"
-
-#~ msgid ""
-#~ "Converting a package that uses this program to use the new statoverride "
-#~ "mechanism is easy. Just remove the call to B<dh_suidregister> from "
-#~ "F<debian/rules>, and add a versioned conflicts into your F<control> file, "
-#~ "as follows:"
-#~ msgstr ""
-#~ "本プログラムを利用するパッケージを、新しい仕組みである statoverride を使う"
-#~ "ように変換するのは簡単です。単に F<debian/rules> から、B<dh_suidregister> "
-#~ "の呼び出しを取り除き、F<control> ファイルにバージョンに関する衝突情報を以"
-#~ "下のように記載するだけです:"
-
-#~ msgid ""
-#~ "  Conflicts: suidmanager (<< 0.50)\n"
-#~ "\n"
-#~ msgstr ""
-#~ "  Conflicts: suidmanager (<< 0.50)\n"
-#~ "\n"
-
-#~ msgid ""
-#~ "The conflicts is only necessary if your package used to register things "
-#~ "with suidmanager; if it did not, you can just remove the call to this "
-#~ "program from your rules file."
-#~ msgstr ""
-#~ "この衝突情報は、suidmanager を用いて suid/guid したファイルを登録している"
-#~ "ようなパッケージについてのみ必要です。もし、suidmanager を使っていないよう"
-#~ "であれば、rule ファイルから本プログラムの呼び出しを取り除くだけで問題あり"
-#~ "ません。"
-
-#~ msgid "dh_undocumented - undocumented.7 symlink program (deprecated no-op)"
-#~ msgstr ""
-#~ "dh_undocumented - undocumented.7 のシンボリックリンクを作成する (廃止、何"
-#~ "もしない)"
-
-#~ msgid ""
-#~ "This program used to make symlinks to the F<undocumented.7> man page for "
-#~ "man pages not present in a package. Debian policy now frowns on use of "
-#~ "the F<undocumented.7> man page, and so this program does nothing, and "
-#~ "should not be used."
-#~ msgstr ""
-#~ "このプログラムはかつてパッケージに man ページが存在しない場合に、"
-#~ "F<undocumented.7> へのシンボリックリンクを作成して、パッケージに man ペー"
-#~ "ジが無い事を示すのに使われていました。現在の Debian ポリシーは "
-#~ "F<undocumented.7> の man ページを利用する事について異議を唱えている為、本"
-#~ "プログラムは何もしないプログラムとなっており、使わないようにする必要があり"
-#~ "ます。"
