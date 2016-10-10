@@ -13,7 +13,7 @@ use constant {
 	'MIN_COMPAT_LEVEL' => 5,
 	# Lowest compat level that does *not* cause deprecation
 	# warnings
-	'LOWEST_NON_DEPRECATED_COMPAT_LEVEL' => 5,
+	'LOWEST_NON_DEPRECATED_COMPAT_LEVEL' => 9,
 	# Highest "open-beta" compat level.  Remember to notify
 	# debian-devel@l.d.o before bumping this.
 	'BETA_TESTER_COMPAT' => 10,
@@ -49,7 +49,7 @@ use vars qw(@EXPORT %dh);
 	    &get_source_date_epoch &is_cross_compiling
 	    &generated_file &autotrigger &package_section
 	    &restore_file_on_clean &restore_all_files
-	    &open_gz
+	    &open_gz &reset_perm_and_owner
 );
 
 # The Makefile changes this if debhelper is installed in a PREFIX.
@@ -321,7 +321,13 @@ sub install_lib {
 	doit('install', '-p', '-m0644', @_);
 }
 sub install_dir {
-	doit('install', '-d', @_);
+	my @to_create = grep { not -d $_ } @_;
+	doit('install', '-d', @to_create) if @to_create;
+}
+sub reset_perm_and_owner {
+	my ($mode, @paths) = @_;
+	doit('chmod', $mode, '--', @paths);
+	doit('chown', '0:0', '--', @paths);
 }
 
 # Run a command that may have a huge number of arguments, like xargs does.
@@ -428,7 +434,7 @@ sub dirname {
 				my $l=<$compat_in>;
 				close($compat_in);
 				if (! defined $l || ! length $l) {
-					error("debian/compat must contain a postive number (found an empty first line)");
+					error("debian/compat must contain a positive number (found an empty first line)");
 
 				}
 				else {
@@ -439,7 +445,7 @@ sub dirname {
 					if (exists($NAMED_COMPAT_LEVELS{$c})) {
 						$c = $NAMED_COMPAT_LEVELS{$c};
 					} elsif ($c !~ m/^\d+$/) {
-						error("debian/compat must contain a postive number (found: \"$c\")");
+						error("debian/compat must contain a positive number (found: \"$c\")");
 					}
 				}
 			}
@@ -702,9 +708,7 @@ sub generated_file {
 	my $dir = "debian/.debhelper/generated/${package}";
 	my $path = "${dir}/${filename}";
 	$mkdirs //= 1;
-	if ($mkdirs and not -d $dir) {
-		install_dir($dir);
-	}
+	install_dir($dir) if $mkdirs;
 	return $path;
 }
 
@@ -797,7 +801,6 @@ sub filedoublearray {
 	my @ret;
 	while (<DH_FARRAY_IN>) {
 		chomp;
-		# Only ignore comments and empty lines in v5 mode.
 		if (not $x)  {
 			next if /^#/ || /^$/;
 		}
@@ -1102,14 +1105,12 @@ sub debhelper_script_subst {
 			# Just get rid of any #DEBHELPER# in the script.
 			complex_doit("sed s/#DEBHELPER#// < $file > $tmp/DEBIAN/$script");
 		}
-		doit("chown","0:0","$tmp/DEBIAN/$script");
-		doit("chmod","0755","$tmp/DEBIAN/$script");
+		reset_perm_and_owner('0755', "$tmp/DEBIAN/$script");
 	}
 	elsif ( -f "debian/$ext$script.debhelper" ) {
 		complex_doit("printf '#!/bin/sh\nset -e\n' > $tmp/DEBIAN/$script");
 		complex_doit("cat debian/$ext$script.debhelper >> $tmp/DEBIAN/$script");
-		doit("chown","0:0","$tmp/DEBIAN/$script");
-		doit("chmod","0755","$tmp/DEBIAN/$script");
+		reset_perm_and_owner('0755', "$tmp/DEBIAN/$script");
 	}
 }
 
@@ -1132,9 +1133,7 @@ sub make_symlink{
 
 	# Make sure the directory the link will be in exists.
 	my $basedir=dirname("$tmp/$dest");
-	if (! -e $basedir) {
-		install_dir($basedir);
-	}
+	install_dir($basedir);
 
 	# Policy says that if the link is all within one toplevel
 	# directory, it should be relative. If it's between
@@ -1354,9 +1353,7 @@ sub restore_file_on_clean {
 	my $bucket_index = 'debian/.debhelper/bucket/index';
 	my $bucket_dir = 'debian/.debhelper/bucket/files';
 	my $checksum;
-	if (not -d $bucket_dir) {
-		install_dir($bucket_dir);
-	}
+	install_dir($bucket_dir);
 	if ($file =~ m{^/}) {
 		error("restore_file_on_clean requires a path relative to the package dir");
 	}

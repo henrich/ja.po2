@@ -302,6 +302,11 @@ These are the available compatibility levels:
 
 This is the lowest supported compatibility level.
 
+If you are upgrading from an earlier compatibility level, please
+review L<debhelper-obsolete-compat(7)>.
+
+This mode is deprecated.
+
 =item v6
 
 Changes from v5 are:
@@ -332,6 +337,8 @@ directory. In previous compatibility levels it silently refuses to do this.
 
 =back
 
+This mode is deprecated.
+
 =item v7
 
 Changes from v6 are:
@@ -359,6 +366,8 @@ B<dh_installchangelogs> will guess at what file is the upstream changelog if
 none is specified.
 
 =back
+
+This mode is deprecated.
 
 =item v8
 
@@ -388,6 +397,8 @@ any switches come after it. Ie, use "B<dh $@ --foo>", not "B<dh --foo $@>".
 B<dh_auto_>I<*> prefer to use Perl's B<Module::Build> in preference to F<Makefile.PL>.
 
 =back
+
+This mode is deprecated.
 
 =item v9
 
@@ -500,7 +511,7 @@ The B<dh> command will no longer use log files to track which commands
 have been run.  The B<dh> command I<still> keeps track of whether it
 already ran the "build" sequence and skip it if it did.
 
-The main affects of this are:
+The main effects of this are:
 
 =over 4
 
@@ -514,7 +525,7 @@ do a full "clean and rebuild" cycle)
 
 The main caveat is that B<dh_*> now only keeps track of what happened
 in a single override target.  When all the calls to a given B<dh_cmd>
-command happens in the same override target every thing will work as
+command happens in the same override target everything will work as
 before.
 
 Example of where it can go wrong:
@@ -535,8 +546,8 @@ B<-a>, B<-i>, etc.
 
 =item -
 
-The B<dh_installdeb> command now shell escapes the lines in the
-F<maintscript> config file.  This was the original intend but it did
+The B<dh_installdeb> command now shell-escapes the lines in the
+F<maintscript> config file.  This was the original intent but it did
 not work properly and packages have begun to rely on the incomplete
 shell escaping (e.g. quoting file names).
 
@@ -593,6 +604,14 @@ If you need the old behaviour, it can be emulated by using the
 B<--mainpackage> option.
 
 Please remember to check/update your doc-base files.
+
+=item -
+
+B<dh_installdirs> no longer creates debian/I<package> directories
+unless explicitly requested (or it has to create a subdirectory in
+it).
+
+The vast majority of all packages will be unaffected by this change.
 
 =back
 
