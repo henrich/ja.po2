@@ -1340,11 +1340,11 @@ msgstr "B<-s>, B<--same-arch> オプションは削除されました。"
 
 #. type: textblock
 #: debhelper.pod:585
+# TRANS: 実際の warning に合わせて deprecate とする
 msgid ""
 "Invoking B<dh_clean -k> now causes an error instead of a deprecation warning."
 msgstr ""
-"B<dh_clean -k> の起動は deprecation の警告ではなくエラーを起こすようになりま"
-"した。"
+"B<dh_clean -k> の起動は deprecate 警告ではなくエラーを起こすようになりました。"
 
 #. type: textblock
 #: debhelper.pod:590
@@ -1363,16 +1363,18 @@ msgid ""
 "If you need the old behaviour, it can be emulated by using the B<--"
 "mainpackage> option."
 msgstr ""
+"以前の振る舞いが必要な場合、B<--mainpackage> オプションを使って"
+"エミュレーションすることができます。"
 
 #. type: textblock
 #: debhelper.pod:598
 msgid "Please remember to check/update your doc-base files."
-msgstr ""
+msgstr "doc-base ファイルの確認と更新を忘れないで下さい。"
 
 #. type: =head2
 #: debhelper.pod:604
 msgid "Participating in the open beta testing of new compat levels"
-msgstr ""
+msgstr "新しい互換性レベルの公開ベータテストに参加する"
 
 #. type: textblock
 #: debhelper.pod:606
@@ -1380,6 +1382,8 @@ msgid ""
 "It is possible to opt-in to the open beta testing of new compat levels.  "
 "This is done by setting the compat level to the string \"beta-tester\"."
 msgstr ""
+"新しい互換性レベルの公開ベータテストに参加することができます。これは、"
+"互換性レベルを \"beta-tester\" という文字に設定することで実施します。"
 
 #. type: textblock
 #: debhelper.pod:610
@@ -1388,11 +1392,14 @@ msgid ""
 "highest compatibility level in open beta.  In periods without any open beta "
 "versions, the compat level will be the highest stable compatibility level."
 msgstr ""
+"この互換性レベルを使うパッケージは、公開ベータ状態にある最も高い互換性レベル"
+"に自動的にアップグレードされます。公開ベータバージョンが存在しない期間では、"
+"互換性レベルは最も高い安定版互換性レベルになります。"
 
 #. type: textblock
 #: debhelper.pod:615
 msgid "Please consider the following before opting in:"
-msgstr ""
+msgstr "受け入れ前に以下の事柄を検討して下さい:"
 
 #. type: =item
 #: debhelper.pod:619 debhelper.pod:624 debhelper.pod:631 debhelper.pod:637
@@ -1406,14 +1413,20 @@ msgid ""
 "The automatic upgrade in compatibility level may cause the package (or a "
 "feature in it) to stop functioning."
 msgstr ""
+"互換性レベルの自動アップグレードはパッケージ (あるいはパッケージの一部機能) "
+"が動作しなくなる可能性があります。"
 
 #. type: textblock
 #: debhelper.pod:626
+#, fuzzy
 msgid ""
 "Compatibility levels in open beta are still subject to change.  We will try "
 "to keep the changes to a minimal once the beta starts.  However, there are "
 "no guarantees that the compat will not change during the beta."
 msgstr ""
+"公開ベータ状態の互換性レベルは、以前変更される可能性があります。ベータ開始後は"
+"変更を最小限に留めるようにします。ですが、ベータ期間中に互換性が変わらないこと"
+"の保証はありません。"
 
 #. type: textblock
 #: debhelper.pod:633
@@ -1422,6 +1435,9 @@ msgid ""
 "open beta compat level.  However, once the beta starts we expect that you "
 "keep yourself up to date on changes to debhelper."
 msgstr ""
+"互換性レベルの新たな公開ベータを始める前に debian-devel@lists.debian.org で"
+"通知します。ですが、一旦ベータテストが始まったら、debhelper の変更へ追随する"
+"ことが期待されます。"
 
 #. type: textblock
 #: debhelper.pod:639
@@ -1430,6 +1446,9 @@ msgid ""
 "be different than the one in stable-backports.  Accordingly, it is not "
 "recommended for packages being backported regularly."
 msgstr ""
+"不安定版及びテスト版にある \"beta-tester\" 互換性バージョンは、しばしば "
+"stable-backports のものとは異なります。従って、定期的にバックポートするのは"
+"推奨されません。"
 
 #. type: textblock
 #: debhelper.pod:645
@@ -1437,11 +1456,13 @@ msgid ""
 "You can always opt-out of the beta by resetting the compatibility level of "
 "your package to a stable version."
 msgstr ""
+"パッケージの互換性レベルを安定版バージョンに戻せば、いつでもベータを辞める"
+"ことが可能です。"
 
 #. type: textblock
 #: debhelper.pod:650
 msgid "Should you still be interested in the open beta testing, please run:"
-msgstr ""
+msgstr "公開ベータテストに興味がまだある場合は、以下を実行して下さい:"
 
 #. type: verbatim
 #: debhelper.pod:652
@@ -1456,7 +1477,7 @@ msgstr ""
 #. type: textblock
 #: debhelper.pod:654
 msgid "You will also need to ensure that debian/control contains:"
-msgstr ""
+msgstr "debian/control が以下を含むことを確認する必要もあります:"
 
 #. type: verbatim
 #: debhelper.pod:656
@@ -1471,7 +1492,7 @@ msgstr ""
 #. type: textblock
 #: debhelper.pod:658
 msgid "To ensure that debhelper knows about the \"beta-tester\" compat level."
-msgstr ""
+msgstr "debhelper が \"beta-tester\" 互換性レベルを理解するのを保証するためです。"
 
 #. type: =head1
 #: debhelper.pod:660 dh_auto_test:46 dh_installcatalogs:62 dh_installdocs:136
@@ -1615,6 +1636,19 @@ msgid ""
 "  }\n"
 "\n"
 msgstr ""
+"  my $temp=\"set -e\\nset -- @ARGV\\n\" . << 'EOF';\n"
+"  #DEBHELPER#\n"
+"  EOF\n"
+"  if (system($temp)) {\n"
+"     my $exit_code = ($? >> 8) & 0xff;\n"
+"     my $signal = $? & 0x7f;\n"
+"     if ($exit_code) {\n"
+"         die(\"debhelper スクリプトは失敗しました。エラーコード: ${exit_code}\");\n"
+"     } else {\n"
+"         die(\"debhelper スクリプトは以下のシグナルで終了されました: ${signal}\");\n"
+"     }\n"
+"  }\n"
+"\n"
 
 #. type: =head2
 #: debhelper.pod:720
@@ -1736,6 +1770,9 @@ msgid ""
 "To specify them properly in F<debian/rules>, be sure to \"B<export>\" them. "
 "For example, \"B<export DH_VERBOSE>\"."
 msgstr ""
+"以下の環境変数は debhelper の振る舞いに影響を与えることができます。
+
+例えば \"B<export DH_VERBOSE>\" などとします。"
 
 #. type: =item
 #: debhelper.pod:772
@@ -2109,10 +2146,8 @@ msgstr ""
 
 #. type: textblock
 #: debhelper-obsolete-compat.pod:104
-#, fuzzy
-#| msgid "dh_installinfo - install info files"
 msgid "B<dh_installdocs> skips installing empty files."
-msgstr ""
+msgstr "B<dh_installdocs> は空ファイルのインストールを飛ばします。"
 
 #. type: textblock
 #: debhelper-obsolete-compat.pod:108
@@ -2289,7 +2324,7 @@ msgstr "利用可能なアドオン一覧を表示する。"
 #. type: textblock
 #: dh:65
 msgid "This can be used without a F<debian/compat> file."
-msgstr ""
+msgstr "これは F<debian/compat> ファイル無しで利用できます。"
 
 #. type: textblock
 #: dh:69
@@ -2572,13 +2607,12 @@ msgstr ""
 
 #. type: textblock
 #: dh:163
-#, fuzzy
 msgid ""
 "If your package can be built in parallel, please either use compat 10 or "
 "pass B<--parallel> to dh. Then B<dpkg-buildpackage -j> will work."
 msgstr ""
-"パッケージが並列処理が可能であれば、以下のようにして並列ビルドをサポートでき"
-"ます。そして B<dpkg-buildpackage -j> が有効になります。"
+"パッケージが並列ビルド可能であれば、互換性レベル 10 を使うか dh に B<--parallel> "
+"を指定して下さい。すると B<dpkg-buildpackage -j> が有効になります。"
 
 #. type: verbatim
 #: dh:166
@@ -2600,6 +2634,8 @@ msgid ""
 "If your package cannot be built reliably while using multiple threads, "
 "please pass B<--no-parallel> to dh (or the relevant B<dh_auto_>I<*> command):"
 msgstr ""
+"パッケージが複数スレッドを使うと安定してビルド出来ない場合は、dh (あるいは関連する "
+"B<dh_auto_>I<*> コマンド)に B<--no-parallel> を指定して下さい。"
 
 #. type: verbatim
 #: dh:175
