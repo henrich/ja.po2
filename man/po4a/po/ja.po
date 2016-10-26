@@ -1770,9 +1770,11 @@ msgid ""
 "To specify them properly in F<debian/rules>, be sure to \"B<export>\" them. "
 "For example, \"B<export DH_VERBOSE>\"."
 msgstr ""
-"以下の環境変数は debhelper の振る舞いに影響を与えることができます。
-
-例えば \"B<export DH_VERBOSE>\" などとします。"
+"以下の環境変数は debhelper の振る舞いに影響を与えることができます。正しく"
+"動作するためには、(単なる F<Makefile> 変数ではなく) 実際の環境変数である必要"
+"があることに注意するのが重要です。これらを正しく F<debian/rules> で指定する"
+"には、必ず \"B<export>\" してください。例えば \"B<export DH_VERBOSE>\" など"
+"とします。"
 
 #. type: =item
 #: debhelper.pod:772
@@ -1803,6 +1805,12 @@ msgid ""
 "This makes it easier to spot important messages but makes the output quite "
 "useless as buildd log.  Ignored if DH_VERBOSE is also set."
 msgstr ""
+"quiet モードを有効にするには B<1> を指定して下さい。debhelperは upstream の"
+"ビルドシステムの呼び出しコマンドや、dh がどのサブコマンドが呼び出されたのかも"
+"出力しなくなり、upstream のビルドシステムによってはさらに静かになります。"
+"これは重要なメッセージに注目するのが簡単になりますが、buildd のログとしては"
+"出力は極めて使い物にならなくなります。DH_VERBOSE が同時にセットされていると"
+"無視されます。"
 
 #. type: =item
 #: debhelper.pod:786
@@ -1971,8 +1979,9 @@ msgstr "Joey Hess <joeyh@debian.org>"
 
 #. type: textblock
 #: debhelper-obsolete-compat.pod:3
+#, fuzzy
 msgid "debhelper-obsolete-compat - List of no longer supported compat levels"
-msgstr ""
+msgstr "debhelper-obsolete-compat - 既にサポートされなくなった互換性レベル一覧"
 
 #. type: textblock
 #: debhelper-obsolete-compat.pod:7
@@ -1982,27 +1991,30 @@ msgid ""
 "and to assist people upgrading from a non-supported compat level to a "
 "supported level."
 msgstr ""
+"このドキュメントには、もはやサポートされていない全ての互換性レベルからの"
+"アップグレードに対するガイドラインが含まれています。従って、殆どが当時の"
+"目的についての説明と、サポートされていない互換性レベルからサポートされている"
+"レベルへのアップグレードを支援するためのものになります。"
 
 #. type: textblock
 #: debhelper-obsolete-compat.pod:12
 #, fuzzy
-#| msgid ""
-#| "* The package must be using compatibility level 9 or later (see "
-#| "L<debhelper(7)>)"
 msgid "For upgrades from supported compat levels, please see L<debhelper(7)>."
 msgstr ""
-"* パッケージは互換性レベル 9 以降を使う必要があります (L<debhelper(7)> 参照)"
+"サポートされる互換性レベルからのアップグレードについては、L<debhelper(7)> を参照して下さい。"
 
 #. type: =head1
 #: debhelper-obsolete-compat.pod:14
+#, fuzzy
 msgid "UPGRADE LIST FOR COMPAT LEVELS"
-msgstr ""
+msgstr "互換性レベルへのアップグレード一覧"
 
 #. type: textblock
 #: debhelper-obsolete-compat.pod:16
+#, fuzzy
 msgid ""
 "The following is the list of now obsolete compat levels and their changes."
-msgstr ""
+msgstr "以下は現在利用できなくなった互換性レベルとその変更の一覧です。"
 
 #. type: =item
 #: debhelper-obsolete-compat.pod:21
@@ -2770,24 +2782,27 @@ msgid ""
 "been run for.  These log files are then removed once the override target is "
 "complete."
 msgstr ""
+"互換性レベル 10 (とそれ以降) では、B<dh> はビルド工程の完了後、再動作を"
+"避けるためにスタンプファイル F<debian/debhelper-build-stamp> を作成します。"
+"override ターゲット内では、B<dh_*> コマンドはどのパッケージに対してコマンドが"
+"実行されたのか記録を取るためにログファイル F<debian/package.debhelper.log> を"
+"生成します。これらのログファイルは override ターゲットが完了した際に削除されます。"
 
 #. type: textblock
 #: dh:225
-#, fuzzy
 msgid ""
 "In compat 9 or earlier, each debhelper command will record when it's "
 "successfully run in F<debian/package.debhelper.log>. (Which B<dh_clean> "
 "deletes.) So B<dh> can tell which commands have already been run, for which "
 "packages, and skip running those commands again."
 msgstr ""
-"debhelper コマンドは F<debian/package.debhelper.log> に実行がうまく行ったもの"
-"を記録します (これは B<dh_clean> が消去します)。これにより、B<dh> は既にどの"
-"コマンドが実行されたか、あるいはどのパッケージに対して実行されたか、何のコマ"
-"ンドを再びスキップすればよいのかがわかります。"
+"互換性レベル 9 とそれ以前では、各 debhelper コマンドは F<debian/package.debhelper.log> "
+"に実行がうまく行ったものを記録します (これは B<dh_clean> が消去します)。"
+"これにより、B<dh> は既にどのコマンドが実行されたか、あるいはどのパッケージに"
+"対して実行されたか、何のコマンドを再びスキップすればよいのかがわかります。"
 
 #. type: textblock
 #: dh:230
-#, fuzzy
 msgid ""
 "Each time B<dh> is run (in compat 9 or earlier), it examines the log, and "
 "finds the last logged command that is in the specified sequence. It then "
@@ -2795,10 +2810,10 @@ msgid ""
 "before>, B<--after>, and B<--remaining> options can override this behavior "
 "(though they were removed in compat 10)."
 msgstr ""
-"B<dh> が動作すると、ログを検査し、指定された一連の処理にてどんなコマンドが最"
+"(互換性レベル 9 とそれ以前では) B<dh> が動作すると、ログを検査し、指定された一連の処理にてどんなコマンドが最"
 "後に実行されたと記録されているかを調べます。そして、次に実行すべきコマンドを"
 "実行します。 B<--until>, B<--before>, B<--after>, B<--remaining> オプションに"
-"より、この振る舞いを変更できます。"
+"より、この振る舞いを変更できます (ただし、互換性レベル 10 ではこれらは削除されています)。"
 
 #. type: textblock
 #: dh:236
@@ -2936,8 +2951,8 @@ msgid ""
 "B<dh_auto_build> [S<I<build system options>>] [S<I<debhelper options>>] "
 "[S<B<--> I<params>>]"
 msgstr ""
-"B<dh_auto_build> [S<I<build system options>>] [S<I<debhelper options>>] "
-"[S<B<--> I<params>>]"
+"B<dh_auto_build> [S<I<build system オプション>>] [S<I<debhelper オプション>>] "
+"[S<B<--> I<パラメータ>>]"
 
 #. type: textblock
 #: dh_auto_build:19
@@ -3003,8 +3018,8 @@ msgid ""
 "B<dh_auto_clean> [S<I<build system options>>] [S<I<debhelper options>>] "
 "[S<B<--> I<params>>]"
 msgstr ""
-"B<dh_auto_clean> [S<I<build system options>>] [S<I<debhelper options>>] "
-"[S<B<--> I<params>>]"
+"B<dh_auto_clean> [S<I<build system オプション>>] [S<I<debhelper オプション>>] "
+"[S<B<--> I<パラメータ>>]"
 
 #. type: textblock
 #: dh_auto_clean:20
@@ -3058,8 +3073,8 @@ msgid ""
 "B<dh_auto_configure> [S<I<build system options>>] [S<I<debhelper options>>] "
 "[S<B<--> I<params>>]"
 msgstr ""
-"B<dh_auto_configure> [S<I<build system options>>] [S<I<debhelper options>>] "
-"[S<B<--> I<params>>]"
+"B<dh_auto_configure> [S<I<build system オプション>>] [S<I<debhelper オプション>>] "
+"[S<B<--> I<パラメータ>>]"
 
 #. type: textblock
 #: dh_auto_configure:19
@@ -3123,7 +3138,7 @@ msgid ""
 "B<dh_auto_install> [S<I<build system options>>] [S<I<debhelper options>>] "
 "[S<B<--> I<params>>]"
 msgstr ""
-"B<dh_auto_install> [S<I<build system options>>] [S<I<debhelper options>>] "
+"B<dh_auto_install> [S<I<build system オプション>>] [S<I<debhelper オプション>>] "
 "[S<B<--> I<params>>]"
 
 #. type: textblock
@@ -3223,7 +3238,7 @@ msgid ""
 "B<dh_auto_test> [S<I<build system options>>] [S<I<debhelper options>>] "
 "[S<B<--> I<params>>]"
 msgstr ""
-"B<dh_auto_test> [S<I<build system options>>] [S<I<debhelper options>>] "
+"B<dh_auto_test> [S<I<build system オプション>>] [S<I<debhelper オプション>>] "
 "[S<B<--> I<params>>]"
 
 #. type: textblock
@@ -3295,7 +3310,7 @@ msgstr ""
 #. type: textblock
 #: dh_bugfiles:15
 msgid "B<dh_bugfiles> [B<-A>] [S<I<debhelper options>>]"
-msgstr "B<dh_bugfiles> [B<-A>] [S<I<debhelper options>>]"
+msgstr "B<dh_bugfiles> [B<-A>] [S<I<debhelper オプション>>]"
 
 #. type: textblock
 #: dh_bugfiles:19
@@ -3415,8 +3430,8 @@ msgid ""
 "B<dh_builddeb> [S<I<debhelper options>>] [B<--destdir=>I<directory>] [B<--"
 "filename=>I<name>] [S<B<--> I<params>>]"
 msgstr ""
-"B<dh_builddeb> [S<I<debhelper options>>] [B<--destdir=>I<directory>] [B<--"
-"filename=>I<name>] [S<B<--> I<params>>]"
+"B<dh_builddeb> [S<I<debhelper オプション>>] [B<--destdir=>I<ディレクトリ>] [B<--"
+"filename=>I<名前>] [S<B<--> I<パラメータ>>]"
 
 #. type: textblock
 #: dh_builddeb:19
@@ -3427,7 +3442,8 @@ msgid ""
 "L<dh_gencontrol(1)> have prepared them."
 msgstr ""
 "B<dh_builddeb> は、Debian パッケージもしくはパッケージ群をビルドするため "
-"L<dpkg-deb(1)> を単純に呼ぶコマンドです。"
+"L<dpkg-deb(1)> を単に呼びだすコマンドです。L<dh_strip(1)> と L<dh_gencontrol(1)> "
+"が設定されている場合には dbgsym パッケージもビルドします。"
 
 #. type: textblock
 #: dh_builddeb:23
@@ -3551,6 +3567,8 @@ msgid ""
 "Note that directories listed in this file B<must> end with a trailing "
 "slash.  Any content in these directories will be removed as well."
 msgstr ""
+"このファイル内で記載されているディレクトリは最後がスラッシュで終わる"
+"B<必要があります>。これらのディレクトリ内の内容は同様に削除されます。"
 
 #. type: =item
 #: dh_clean:49 dh_installchangelogs:64
@@ -3609,6 +3627,7 @@ msgstr "これらの I<path> も消去します。"
 
 #. type: textblock
 #: dh_clean:70
+#, fuzzy
 msgid ""
 "Note that directories passed as arguments B<must> end with a trailing "
 "slash.  Any content in these directories will be removed as well."
@@ -3628,8 +3647,8 @@ msgid ""
 "B<dh_compress> [S<I<debhelper options>>] [B<-X>I<item>] [B<-A>] "
 "[S<I<file> ...>]"
 msgstr ""
-"B<dh_compress> [S<I<debhelper options>>] [B<-X>I<item>] [B<-A>] "
-"[S<I<file> ...>]"
+"B<dh_compress> [S<I<debhelper オプション>>] [B<-X>I<項目>] [B<-A>] "
+"[S<I<ファイル> ...>]"
 
 #. type: textblock
 #: dh_compress:21
@@ -7307,7 +7326,7 @@ msgid ""
 "B<dh_md5sums> [S<I<debhelper options>>] [B<-x>] [B<-X>I<item>] [B<--include-"
 "conffiles>]"
 msgstr ""
-"B<dh_md5sums> [S<I<debhelper options>>] [B<-x>] [B<-X>I<item>] [B<--include-"
+"B<dh_md5sums> [S<I<debhelper オプション>>] [B<-x>] [B<-X>I<item>] [B<--include-"
 "conffiles>]"
 
 #. type: textblock
@@ -7376,8 +7395,8 @@ msgid ""
 "B<dh_movefiles> [S<I<debhelper options>>] [B<--sourcedir=>I<dir>] [B<-"
 "X>I<item>] [S<I<file> ...>]"
 msgstr ""
-"B<dh_movefiles> [S<I<debhelper options>>] [B<--sourcedir=>I<dir>] [B<-"
-"X>I<item>] [S<I<file> ...>]"
+"B<dh_movefiles> [S<I<debhelper オプション>>] [B<--sourcedir=>I<ディレクトリ>] [B<-"
+"X>I<item>] [S<I<ファイル> ...>]"
 
 #. type: textblock
 #: dh_movefiles:19
@@ -7488,7 +7507,7 @@ msgstr ""
 #. type: textblock
 #: dh_perl:17
 msgid "B<dh_perl> [S<I<debhelper options>>] [B<-d>] [S<I<library dirs> ...>]"
-msgstr "B<dh_perl> [S<I<debhelper options>>] [B<-d>] [S<I<library dirs> ...>]"
+msgstr "B<dh_perl> [S<I<debhelper オプション>>] [B<-d>] [S<I<ライブラリディレクトリ> ...>]"
 
 #. type: textblock
 #: dh_perl:21
@@ -7610,7 +7629,7 @@ msgstr "dh_prep - バイナリパッケージビルドの事前準備として�
 #. type: textblock
 #: dh_prep:15
 msgid "B<dh_prep> [S<I<debhelper options>>] [B<-X>I<item>]"
-msgstr "B<dh_prep> [S<I<debhelper options>>] [B<-X>I<item>]"
+msgstr "B<dh_prep> [S<I<debhelper オプション>>] [B<-X>I<item>]"
 
 #. type: textblock
 #: dh_prep:19
@@ -7658,8 +7677,8 @@ msgid ""
 "B<dh_shlibdeps> [S<I<debhelper options>>] [B<-L>I<package>] [B<-"
 "l>I<directory>] [B<-X>I<item>] [S<B<--> I<params>>]"
 msgstr ""
-"B<dh_shlibdeps> [S<I<debhelper options>>] [B<-L>I<package>] [B<-"
-"l>I<directory>] [B<-X>I<item>] [S<B<--> I<params>>]"
+"B<dh_shlibdeps> [S<I<debhelper オプション>>] [B<-L>I<パッケージ>] [B<-"
+"l>I<ディレクトリ>] [B<-X>I<item>] [S<B<--> I<パラメータ>>]"
 
 #. type: textblock
 #: dh_shlibdeps:20
@@ -7857,8 +7876,8 @@ msgid ""
 "B<dh_strip> [S<I<debhelper options>>] [B<-X>I<item>] [B<--dbg-"
 "package=>I<package>] [B<--keep-debug>]"
 msgstr ""
-"B<dh_strip> [S<I<debhelper options>>] [B<-X>I<item>] [B<--dbg-"
-"package=>I<package>] [B<--keep-debug>]"
+"B<dh_strip> [S<I<debhelper オプション>>] [B<-X>I<item>] [B<--dbg-"
+"package=>I<パッケージ>] [B<--keep-debug>]"
 
 #. type: textblock
 #: dh_strip:20
@@ -8104,7 +8123,7 @@ msgstr ""
 #. type: textblock
 #: dh_testdir:15
 msgid "B<dh_testdir> [S<I<debhelper options>>] [S<I<file> ...>]"
-msgstr "B<dh_testdir> [S<I<debhelper options>>] [S<I<file> ...>]"
+msgstr "B<dh_testdir> [S<I<debhelper オプション>>] [S<I<ファイル> ...>]"
 
 #. type: textblock
 #: dh_testdir:19
@@ -8133,7 +8152,7 @@ msgstr "dh_testroot - パッケージが root 権限の元でビルドされる�
 #. type: textblock
 #: dh_testroot:9
 msgid "B<dh_testroot> [S<I<debhelper options>>]"
-msgstr "B<dh_testroot> [S<I<debhelper options>>]"
+msgstr "B<dh_testroot> [S<I<debhelper オプション>>]"
 
 #. type: textblock
 #: dh_testroot:13
@@ -8155,7 +8174,7 @@ msgstr "dh_usrlocal - usr/local ディレクトリをメンテナスクリプト
 #. type: textblock
 #: dh_usrlocal:17
 msgid "B<dh_usrlocal> [S<I<debhelper options>>] [B<-n>]"
-msgstr "B<dh_usrlocal> [S<I<debhelper options>>] [B<-n>]"
+msgstr "B<dh_usrlocal> [S<I<debhelper オプション>>] [B<-n>]"
 
 #. type: textblock
 #: dh_usrlocal:21
